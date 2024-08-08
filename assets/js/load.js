@@ -29,7 +29,7 @@ const showGodInfo = ({ greek, roman, desc, image: { x, y } }) => {
 }
 
 // Load Gods' data
-GODS.forEach((el) => {
+GODS.forEach((el, i) => {
   const {
     greek,
     roman,
@@ -46,4 +46,6 @@ GODS.forEach((el) => {
   godLink.innerText = `${greek} (${roman})`
   godLink.addEventListener("click", () => showGodInfo(el))
   menuItems.appendChild(godLink)
+
+  if (i < GODS.length - 1) menuItems.appendChild(document.createElement("hr"))
 })
