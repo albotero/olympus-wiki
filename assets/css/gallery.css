@@ -1,0 +1,222 @@
+:root {
+  --color-1: rgb(238, 243, 255);
+  --color-2: rgba(0, 0, 0, 0.4);
+  --color-3: rgb(43, 54, 71);
+  --shadow: 2px 2px 6px var(--color-2);
+}
+
+body {
+  background-color: var(--color-1);
+  color: var(--color-3);
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-areas:
+    "menu-bar"
+    "gallery"
+    "footer";
+}
+
+.info-container h4,
+.info-container p,
+.footer p {
+  margin: 0;
+}
+
+.menu {
+  grid-area: menu-bar;
+  background-color: var(--color-3);
+  color: var(--color-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  padding: 0 1rem;
+}
+
+.menu-logo-container {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.menu-title {
+  margin: 0;
+  font: large Verdana, sans-serif;
+}
+
+.menu-logo {
+  height: 100% !important;
+  fill: aqua;
+}
+
+.menu-icon {
+  font-size: x-large;
+}
+
+.menu-icon:not(.active) {
+  animation: hamburger-close 2s backwards;
+}
+
+.menu-icon.active {
+  animation: hamburger-open 2s forwards;
+}
+
+.gallery {
+  grid-area: gallery;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.god-img {
+  background-image: url("../img/gods.webp");
+  aspect-ratio: 5/6;
+  background-size: 450%;
+  cursor: pointer;
+  filter: grayscale(0%) drop-shadow(0 0 0.35rem var(--color-2));
+}
+
+.gallery > .god-img {
+  animation: 5s ease-out infinite shake;
+}
+
+.info {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  background-color: var(--color-2);
+  display: none;
+}
+
+.info-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  background-color: var(--color-1);
+  display: grid;
+  gap: 0.6rem 0.8rem;
+  grid-template-columns: 0.25rem max-content 1fr 0.25rem;
+  grid-template-areas:
+    "god-img god-img god-img god-img"
+    ". greek-title greek-text ."
+    ". roman-title roman-text ."
+    ". desc-text desc-text .";
+  padding-bottom: 0.7rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.info .god-img {
+  transform: scale(1);
+  width: 100%;
+  justify-self: center;
+  grid-area: god-img;
+}
+
+.info .god-img:hover {
+  animation: none;
+}
+
+.greek-title {
+  grid-area: greek-title;
+}
+
+.greek-text {
+  grid-area: greek-text;
+}
+
+.roman-title {
+  grid-area: roman-title;
+}
+
+.roman-text {
+  grid-area: roman-text;
+}
+
+.desc-text {
+  grid-area: desc-text;
+}
+
+.footer {
+  grid-area: footer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social .link {
+  color: inherit;
+  text-decoration: none;
+}
+
+@keyframes shake {
+  25% {
+    transform: rotate(-2.5deg) translate(-0.25rem, 0.5rem);
+  }
+  75% {
+    transform: rotate(+2.5deg) translate(0.25rem, -0.5rem);
+  }
+  100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+}
+
+@keyframes color {
+  0% {
+    filter: grayscale(0%) drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5));
+  }
+  50% {
+    filter: grayscale(60%) drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.55));
+  }
+  100% {
+    filter: grayscale(0%) drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5));
+  }
+}
+
+@keyframes hamburger-close {
+  from {
+    transform: rotateY(-60deg) rotateZ(-90deg);
+  }
+}
+
+@keyframes hamburger-open {
+  from {
+    transform: rotateX(-60deg);
+  }
+
+  to {
+    transform: rotateZ(-90deg);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .god-img {
+    filter: grayscale(80%);
+  }
+
+  .god-img:hover {
+    transform: scale(1);
+    animation: 4s ease 6 forwards color;
+  }
+}
