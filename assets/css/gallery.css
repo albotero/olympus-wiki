@@ -2,6 +2,7 @@
   --color-1: rgb(238, 243, 255);
   --color-2: rgba(0, 0, 0, 0.4);
   --color-3: rgb(43, 54, 71);
+  --color-4: rgb(71, 88, 114);
   --shadow: 2px 2px 6px var(--color-2);
 }
 
@@ -30,16 +31,16 @@ body {
   background-color: var(--color-3);
   color: var(--color-1);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  height: 3rem;
-  padding: 0 1rem;
 }
 
 .menu-logo-container {
   display: flex;
   gap: 0.4rem;
   align-items: center;
+  padding-left: 1rem;
 }
 
 .menu-title {
@@ -47,13 +48,9 @@ body {
   font: large Verdana, sans-serif;
 }
 
-.menu-logo {
-  height: 100% !important;
-  fill: aqua;
-}
-
 .menu-icon {
   font-size: x-large;
+  margin: 0.75rem 1rem;
 }
 
 .menu-icon:not(.active) {
@@ -62,6 +59,34 @@ body {
 
 .menu-icon.active {
   animation: hamburger-open 2s forwards;
+}
+
+.menu-items {
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-4);
+  transition-duration: 2s;
+  list-style: none;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.menu-icon.active + .menu-items {
+  max-height: 20rem;
+}
+
+.menu-items li {
+  padding: 0.5rem 0 0;
+  color: var(--color-1);
+}
+
+.menu-items li:last-child {
+  padding-bottom: 0.5rem;
 }
 
 .gallery {

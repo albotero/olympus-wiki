@@ -1,8 +1,10 @@
 import { GODS } from "./gods.js"
 
 const menuIcon = document.querySelector(".menu-icon")
+const menuItems = document.querySelector(".menu-items")
 const galleryDiv = document.querySelector(".gallery")
 const infoDiv = document.querySelector(".info")
+
 let mobileMenuShown = false
 
 menuIcon.addEventListener("click", () => {
@@ -29,11 +31,19 @@ const showGodInfo = ({ greek, roman, desc, image: { x, y } }) => {
 // Load Gods' data
 GODS.forEach((el) => {
   const {
+    greek,
+    roman,
     image: { x, y },
   } = el
+
   const god = document.createElement("div")
   god.className = "god-img"
   god.style.backgroundPosition = `${x}% ${y}%`
   god.addEventListener("click", () => showGodInfo(el))
   galleryDiv.appendChild(god)
+
+  const godLink = document.createElement("li")
+  godLink.innerText = `${greek} (${roman})`
+  godLink.addEventListener("click", () => showGodInfo(el))
+  menuItems.appendChild(godLink)
 })
