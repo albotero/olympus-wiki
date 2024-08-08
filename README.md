@@ -1,4 +1,4 @@
-# Desafío con Media Queries
+# Desafío con Animaciones CSS
 
 Deploy en [GitHub Pages](https://albotero.github.io/olympus-wiki/)
 
